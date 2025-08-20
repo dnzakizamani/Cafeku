@@ -13,7 +13,7 @@
             </div>
             <a href="#"
                 class="w-12 h-12 flex items-center justify-center shrink-0 rounded-full overflow-hidden bg-white bg-opacity-20">
-                <img src="assets/images/icons/ic_bell.svg" class="w-[28px] h-[28px]" alt="icon">
+                <img src="{{asset('assets/images/icons/ic_bell.svg')}}" class="w-[28px] h-[28px]" alt="icon">
             </a>
         </div>
 
@@ -22,7 +22,7 @@
         <div class="absolute bottom-0 left-0 right-0 w-full gap-2 px-5">
             <label
                 class="flex items-center w-full rounded-full p-[8px_8px] gap-3 bg-white ring-1 ring-[#F1F2F6] focus-within:ring-[#F3AF00] transition-all duration-300">
-                <img src="assets/images/icons/ic_search.svg" class="w-8 h-8 flex shrink-0" alt="icon">
+                <img src="{{asset('assets/images/icons/ic_search.svg')}}" class="w-8 h-8 flex shrink-0" alt="icon">
                 <input type="text" name="search" id=""
                     class="appearance-none outline-none w-full font-semibold placeholder:text-ngekos-grey placeholder:font-light"
                     placeholder="Search menu, or etc...">
@@ -79,7 +79,7 @@
                                     <!-- rating -->
                                     <div
                                         class="absolute top-5 right-5 flex items-center gap-1 bg-white px-[8px] py-[4px] rounded-full">
-                                        <img src="assets/images/icons/ic_star.svg" alt="rating" class="w-4 h-4">
+                                        <img src="{{asset('assets/images/icons/ic_star.svg')}}" alt="rating" class="w-4 h-4">
                                         <p class="text-sm">{{$popular->rating}}</p>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                     <button type="button"
                                         class="flex items-center justify-center w-[24px] h-[24px] rounded-full bg-transparent"
                                         data-id="{{$popular->id}}" onclick="addToCart(this.dataset.id)">
-                                        <img src="assets/images/icons/ic_plus.svg" class="w-full h-full" alt="icon">
+                                        <img src="{{asset('assets/images/icons/ic_plus.svg')}}" class="w-full h-full" alt="icon">
                                     </button>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                                 <button type="button"
                                     class="flex items-center justify-center w-[24px] h-[24px] rounded-full bg-transparent"
                                     data-id="{{$product->id}}" onclick="addToCart(this.dataset.id)">
-                                    <img src="assets/images/icons/ic_plus.svg" class="w-full h-full" alt="icon">
+                                    <img src="{{asset('assets/images/icons/ic_plus.svg')}}" class="w-full h-full" alt="icon">
                                 </button>
                             </div>
                         </div>

@@ -16,8 +16,11 @@ class Transaction extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            if(Auth::user()->role !== 'admin'){
-                $model->user_id = Auth::user()->id;
+            if (Auth::check()) {
+                // Kalau user login & bukan admin → isi user_id
+                if (Auth::user()->role !== 'admin') {
+                    $model->user_id = Auth::id();
+                }
             }
         });
 
