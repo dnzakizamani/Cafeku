@@ -1,40 +1,44 @@
 FROM php:8.2-apache
 
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
     libonig-dev \
     libxml2-dev \
-    zip \
-    unzip \
     libpq-dev \
     libzip-dev \
     libicu-dev \
-    intl \
     zip \
-    
+    unzip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install \
+        pdo_mysql \
+        pdo_pgsql \
+        mbstring \
+        exif \
+        pcntl \
+        bcmath \
+        gd \
+        intl \
+        zip \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+# Fix git safe directory
+RUN git config --global --add safe.directory /var/www/html
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
-
-# Get latest Composer
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
 WORKDIR /var/www/html
 
-# Copy existing application directory contents
 COPY . /var/www/html
 
-# Copy custom Apache configuration
 COPY ./.docker/apache/apache.conf /etc/apache2/sites-available/000-default.conf
 
-# Change ownership of the working directory
 RUN chown -R www-data:www-data /var/www/html && \
     a2enmod rewrite
 
