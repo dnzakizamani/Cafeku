@@ -17,15 +17,5 @@ services:
       sh -c "composer install &&
              php artisan migrate --force &&
              apache2-foreground"
-
-  db:
-    image: postgres:13
-    ports:
-      - "5432:5432"
-    env_file:
-      - .env
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
 volumes:
   postgres_data:
