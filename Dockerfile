@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.2-apache
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     libpq-dev \
+    libzip-dev \
+    libicu-dev \
     postgresql-client
 
 # Clear cache
